@@ -13,7 +13,7 @@
     "ios/Plugin/",
     "CapacitorPluginWalkmeSdk.podspec"
   ],
-  "author": "WalkMe",
+  "author": "WalkMe Ltd.",
   "license": "MIT",
   "repository": {
     "type": "git",
