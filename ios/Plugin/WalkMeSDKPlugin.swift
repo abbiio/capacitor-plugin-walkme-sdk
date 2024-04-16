@@ -145,6 +145,7 @@ public class WalkMeSDKPlugin: CAPPlugin {
 extension WalkMeSDKPlugin {
     
     @objc private func innerSetUserAttribute(key: String, value: Any, isPrivate: Bool, call: CAPPluginCall) {
+        
         guard value is String || value is Bool || value is NSNumber else {
             call.reject("WalkMe user attribute value is not a valid type")
             return
