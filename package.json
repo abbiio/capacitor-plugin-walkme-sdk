@@ -14,7 +14,7 @@
     "CapacitorPluginWalkmeSdk.podspec"
   ],
   "author": "WalkMe Ltd.",
-  "license": "MIT",
+  "license": "Commercial",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abbiio/capacitor-plugin-walkme-sdk.git"
