@@ -43,6 +43,18 @@ public class WalkMeSDKPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void stop(PluginCall call) {
+        ABBI.stop();
+        success(call);
+    }
+
+    @PluginMethod
+    public void restart(PluginCall call) {
+        ABBI.restart();
+        success(call);
+    }
+
+    @PluginMethod
     public void setUserAttributes(PluginCall call) {
         JSObject attributes = call.getObject("attributes");
         if (attributes == null) {
@@ -100,7 +112,7 @@ public class WalkMeSDKPlugin extends Plugin {
         }
 
         ABBI.setUserId(userID);
-        call.resolve();
+        success(call);
     }
 
     @PluginMethod
@@ -141,13 +153,41 @@ public class WalkMeSDKPlugin extends Plugin {
         }
 
         ABBI.setLanguage(language);
-        call.resolve();
+        success(call);
     }
 
     @PluginMethod
     public void dismissCampaign(PluginCall call) {
         ABBI.dismissCampaign();
         call.resolve();
+    }
+
+    @PluginMethod
+    public void triggerCampaign(PluginCall call) {
+        String triggerKey = call.getString("triggerKey");
+        if (triggerKey == null || triggerKey.isEmpty()) {
+            call.reject("WalkMe triggerKey value is missing");
+        }
+
+
+        ABBI.trigger(triggerKey);
+        success(call);
+    }
+
+    @PluginMethod
+    public void triggerCampaignWithDeepLink(PluginCall call) {
+        String triggerKey = call.getString("triggerKey");
+        if (triggerKey == null || triggerKey.isEmpty()) {
+            call.reject("WalkMe triggerKey value is missing");
+        }
+
+        String deepLink = call.getString("deepLink");
+        if (deepLink == null || deepLink.isEmpty()) {
+            call.reject("WalkMe deepLink value is missing");
+        }
+
+        ABBI.trigger(triggerKey, deepLink);
+        success(call);
     }
 
     // Private
