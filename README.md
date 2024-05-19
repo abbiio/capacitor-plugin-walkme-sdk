@@ -14,6 +14,8 @@ npx cap sync
 <docgen-index>
 
 * [`start(...)`](#start)
+* [`restart()`](#restart)
+* [`stop()`](#stop)
 * [`setFlag(...)`](#setflag)
 * [`setUserID(...)`](#setuserid)
 * [`setUserAttribute(...)`](#setuserattribute)
@@ -25,6 +27,8 @@ npx cap sync
 * [`setScreenID(...)`](#setscreenid)
 * [`setLanguage(...)`](#setlanguage)
 * [`dismissCampaign()`](#dismisscampaign)
+* [`triggerCampaign(...)`](#triggercampaign)
+* [`triggerCampaignWithDeepLink(...)`](#triggercampaignwithdeeplink)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -49,6 +53,37 @@ Starts WalkMe SDK.
 --------------------
 
 
+### restart()
+
+```typescript
+restart() => Promise<{ value: string; }>
+```
+
+Restarts WalkMe SDK.
+
+This method can be called only after WalkMe start was called first.
+WalkMe SDK restart is allowed if current session has been running for at least 30 seconds.
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+--------------------
+
+
+### stop()
+
+```typescript
+stop() => Promise<{ value: string; }>
+```
+
+Stop WalkMe SDK.
+
+This method can be called only after WalkMe start was called first.
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+--------------------
+
+
 ### setFlag(...)
 
 ```typescript
@@ -67,7 +102,7 @@ Utility function for support.
 ### setUserID(...)
 
 ```typescript
-setUserID(userID: WMUserID) => Promise<void>
+setUserID(userID: WMUserID) => Promise<{ value: string; }>
 ```
 
 Sets user id
@@ -75,6 +110,8 @@ Sets user id
 | Param        | Type                                          | Description             |
 | ------------ | --------------------------------------------- | ----------------------- |
 | **`userID`** | <code><a href="#wmuserid">WMUserID</a></code> | the user ID as a string |
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
 
@@ -194,7 +231,7 @@ When used, this should be called everytime the screen shows
 ### setLanguage(...)
 
 ```typescript
-setLanguage(language: WMLanguage) => Promise<void>
+setLanguage(language: WMLanguage) => Promise<{ value: string; }>
 ```
 
 Set the language for your campaigns.
@@ -203,6 +240,8 @@ When used, the language param you pass should match the name of one of the langu
 | Param          | Type                                              | Description                                                       |
 | -------------- | ------------------------------------------------- | ----------------------------------------------------------------- |
 | **`language`** | <code><a href="#wmlanguage">WMLanguage</a></code> | the language for which you want the SDK to display your campaigns |
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
 
@@ -215,6 +254,42 @@ dismissCampaign() => Promise<void>
 
 Dismiss currently presented campaign, in case nothing is presented this API does nothing.
 Exception for launcher campaigns which are not affected by this API.
+
+--------------------
+
+
+### triggerCampaign(...)
+
+```typescript
+triggerCampaign(trigger: WMTrigger) => Promise<{ value: string; }>
+```
+
+Launches a campaign by trigger key
+Once invoked, the method will show the campaign WITHOUT any of its segments (if defined)
+
+| Param         | Type                                            |
+| ------------- | ----------------------------------------------- |
+| **`trigger`** | <code><a href="#wmtrigger">WMTrigger</a></code> |
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+--------------------
+
+
+### triggerCampaignWithDeepLink(...)
+
+```typescript
+triggerCampaignWithDeepLink(options: WMTriggerFromDeepLink) => Promise<{ value: string; }>
+```
+
+Launches a campaign by trigger key
+Once invoked, the method will show the campaign WITHOUT any of its segments (if defined)
+
+| Param         | Type                                                                    |
+| ------------- | ----------------------------------------------------------------------- |
+| **`options`** | <code><a href="#wmtriggerfromdeeplink">WMTriggerFromDeepLink</a></code> |
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
 
@@ -279,5 +354,20 @@ Exception for launcher campaigns which are not affected by this API.
 | Prop           | Type                |
 | -------------- | ------------------- |
 | **`language`** | <code>string</code> |
+
+
+#### WMTrigger
+
+| Prop             | Type                |
+| ---------------- | ------------------- |
+| **`triggerKey`** | <code>string</code> |
+
+
+#### WMTriggerFromDeepLink
+
+| Prop             | Type                |
+| ---------------- | ------------------- |
+| **`triggerKey`** | <code>string</code> |
+| **`deeplink`**   | <code>string</code> |
 
 </docgen-api>

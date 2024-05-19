@@ -15,6 +15,29 @@ export interface WalkMeSDKPlugin {
    */
   start(options: WMKSPair): Promise<{ value: string }>;
 
+  /**
+   * Restarts WalkMe SDK.
+   *
+   * This method can be called only after WalkMe start was called first.
+   * WalkMe SDK restart is allowed if current session has been running for at least 30 seconds.
+   * 
+   * @code
+   * Usage example:
+   * WalkMeSDK.restart();
+   */
+  restart(): Promise<{ value: string }>;
+
+  /**
+   * Stop WalkMe SDK.
+   *
+   * This method can be called only after WalkMe start was called first.
+   * 
+   * @code
+   * Usage example:
+   * WalkMeSDK.stop();
+   */
+  stop(): Promise<{ value: string }>;
+
   /** 
    * Utility function for support.
    *
@@ -35,7 +58,7 @@ export interface WalkMeSDKPlugin {
    * Usage example:
    * WalkMeSDK.setUserID({userID: "someUserID"});
    */
-  setUserID(userID: WMUserID): Promise<void>;
+  setUserID(userID: WMUserID): Promise<{ value: string }>;
 
   /**
    * Sets a user attribute
@@ -126,13 +149,33 @@ export interface WalkMeSDKPlugin {
    * Usage example:
    * WalkMeSDK.setLanguage({language: "language_name"});
    */
-  setLanguage(language: WMLanguage): Promise<void>;
+  setLanguage(language: WMLanguage): Promise<{ value: string }>;
 
   /**
    * Dismiss currently presented campaign, in case nothing is presented this API does nothing.
    * Exception for launcher campaigns which are not affected by this API.
    */
   dismissCampaign(): Promise<void>;
+
+  /**
+   * Launches a campaign by trigger key
+   * Once invoked, the method will show the campaign WITHOUT any of its segments (if defined)
+   *
+   * @code
+   * Usage example:
+   * WalkMeSDK.setTrigger({triggerKey: "trigger_key"});
+   */
+  triggerCampaign(trigger: WMTrigger): Promise<{ value: string }>;
+
+  /**
+   * Launches a campaign by trigger key
+   * Once invoked, the method will show the campaign WITHOUT any of its segments (if defined)
+   *
+   * @code
+   * Usage example:
+   * WalkMeSDK.triggerCampaignWithDeepLink({triggerKey: "trigger_key", deeplink:"your_deeplink"});
+   */
+  triggerCampaignWithDeepLink(options: WMTriggerFromDeepLink): Promise<{ value: string }>;
 }
 
 export interface WMFlag {flag: number}

@@ -21,8 +21,10 @@ public class WalkMeSDKPlugin: CAPPlugin {
             return
         }
         
-        ABBI.start(key, withSecretKey: secret)
-        call.resolve(["res": "ok"])
+        DispatchQueue.main.async {
+            ABBI.start(key, withSecretKey: secret, andApplicationType: ABBI_APP_HYBRID)
+            call.resolve(["res": "ok"])
+        }
     }
     
     @objc func setFlag(_ call: CAPPluginCall) {
@@ -33,6 +35,20 @@ public class WalkMeSDKPlugin: CAPPlugin {
         
         ABBI.setFlag(Int32(flag))
         call.resolve()
+    }
+    
+    @objc func restart(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            ABBI.restart()
+            call.resolve(["res": "ok"])
+        }
+    }
+    
+    @objc func stop(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            ABBI.stop()
+            call.resolve(["res": "ok"])
+        }
     }
     
     @objc func setUserAttributes(_ call: CAPPluginCall) {
@@ -94,8 +110,10 @@ public class WalkMeSDKPlugin: CAPPlugin {
             return
         }
         
-        ABBI.setUserID(userID)
-        call.resolve()
+        DispatchQueue.main.async {
+            ABBI.setUserID(userID)
+            call.resolve(["res": "ok"])
+        }
     }
     
     @objc func sendTrackedEvent(_ call: CAPPluginCall) {
@@ -130,13 +148,44 @@ public class WalkMeSDKPlugin: CAPPlugin {
             return
         }
         
-        ABBI.setLanguage(language)
-        call.resolve()
+        DispatchQueue.main.async {
+            ABBI.setLanguage(language)
+            call.resolve(["res": "ok"])
+        }
     }
     
     @objc func dismissCampaign(_ call: CAPPluginCall) {
         ABBI.dismissCampaign()
         call.resolve()
+    }
+    
+    @objc func triggerCampaign(_ call: CAPPluginCall) {
+        guard let triggerKey = call.getString("triggerKey"), !triggerKey.isEmpty else {
+            call.reject("WalkMe triggerKey value is missing")
+            return
+        }
+        
+        DispatchQueue.main.async {
+            ABBI.trigger(triggerKey)
+            call.resolve(["res": "ok"])
+        }
+    }
+    
+    @objc func triggerCampaignWithDeepLink(_ call: CAPPluginCall) {
+        guard let triggerKey = call.getString("triggerKey"), !triggerKey.isEmpty else {
+            call.reject("WalkMe triggerKey value is missing")
+            return
+        }
+        
+        guard let deepLink = call.getString("deepLink"), !deepLink.isEmpty else {
+            call.reject("WalkMe deepLink value is missing")
+            return
+        }
+        
+        DispatchQueue.main.async {
+            ABBI.trigger(triggerKey, withDeepLink: deepLink)
+            call.resolve(["res": "ok"])
+        }
     }
 
 }
