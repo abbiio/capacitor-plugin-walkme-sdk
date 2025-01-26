@@ -1,6 +1,6 @@
 {
   "name": "capacitor-plugin-walkme-sdk",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A Simple SDK that allows anyone to create and manage in-app content without coding and without deployment, to maximize in-app user engagement.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -43,23 +43,24 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@capacitor/android": "^5.0.0",
-    "@capacitor/core": "^5.0.0",
-    "@capacitor/docgen": "^0.0.18",
-    "@capacitor/ios": "^5.0.0",
-    "@ionic/eslint-config": "^0.3.0",
-    "@ionic/prettier-config": "^1.0.1",
-    "@ionic/swiftlint-config": "^1.1.2",
-    "eslint": "^7.11.0",
-    "prettier": "~2.3.0",
-    "prettier-plugin-java": "~1.0.2",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.32.0",
-    "swiftlint": "^1.0.1",
-    "typescript": "~4.1.5"
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/docgen": "^0.3.0",
+    "@capacitor/ios": "^6.0.0",
+    "@ionic/eslint-config": "^0.4.0",
+    "@ionic/prettier-config": "^4.0.0",
+    "@ionic/swiftlint-config": "^2.0.0",
+    "@types/node": "^22.10.10",
+    "eslint": "^8.57.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-java": "^2.6.7",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.32.0",
+    "swiftlint": "^2.0.0",
+    "typescript": "^5.7.3"
   },
   "peerDependencies": {
-    "@capacitor/core": "^5.0.0"
+    "@capacitor/core": "^6.0.0"
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",
@@ -76,5 +77,8 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@capacitor/cli": "^6.0.0"
   }
 }
