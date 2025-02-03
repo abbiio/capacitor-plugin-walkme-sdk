@@ -1,6 +1,6 @@
 {
   "name": "capacitor-plugin-walkme-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Simple SDK that allows anyone to create and manage in-app content without coding and without deployment, to maximize in-app user engagement.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

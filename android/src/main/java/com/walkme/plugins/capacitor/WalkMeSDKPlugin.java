@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import abbi.io.abbisdk.ABBI;
+import abbi.io.abbisdk.ABBIFlags;
 
 
 @CapacitorPlugin(name = "WalkMeSDKPlugin")
@@ -31,7 +32,7 @@ public class WalkMeSDKPlugin extends Plugin {
             call.reject("WalkMe app secret is missing");
         }
 
-        ABBI.start(key, secret, getActivity());
+        ABBI.start(key, secret, ABBIFlags.ABBI_APP_HYBRID, getActivity().getApplication());
         success(call);
     }
 
