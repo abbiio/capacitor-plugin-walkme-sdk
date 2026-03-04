@@ -11,7 +11,8 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorPluginWalkmeSdk.podspec"
+    "CapacitorPluginWalkmeSdk.podspec",
+    "Package.swift"
   ],
   "author": "WalkMe Ltd.",
   "license": "Commercial",
@@ -69,7 +70,8 @@
   },
   "capacitor": {
     "ios": {
-      "src": "ios"
+      "src": "ios",
+      "packageManagers": ["cocoapods", "spm"]
     },
     "android": {
       "src": "android"
