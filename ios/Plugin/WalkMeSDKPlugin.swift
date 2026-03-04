@@ -7,8 +7,28 @@ import WalkMeSDK
  * here: https://capacitorjs.com/docs/plugins/ios
  */
 @objc(WalkMeSDKPlugin)
-public class WalkMeSDKPlugin: CAPPlugin {
-    
+public class WalkMeSDKPlugin: CAPPlugin, CAPBridgedPlugin {
+    public let identifier = "WalkMeSDKPlugin"
+    public let jsName = "WalkMeSDKPlugin"
+    public let pluginMethods: [CAPPluginMethod] = [
+        CAPPluginMethod(name: "start", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "restart", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "stop", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setFlag", returnType: CAPPluginReturnNone),
+        CAPPluginMethod(name: "setUserID", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setUserAttribute", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setUserAttributes", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setPrivateUserAttribute", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setPrivateUserAttributes", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "clearPrivateUserAttributes", returnType: CAPPluginReturnNone),
+        CAPPluginMethod(name: "sendTrackedEvent", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setScreenID", returnType: CAPPluginReturnNone),
+        CAPPluginMethod(name: "setLanguage", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "dismissCampaign", returnType: CAPPluginReturnNone),
+        CAPPluginMethod(name: "triggerCampaign", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "triggerCampaignWithDeepLink", returnType: CAPPluginReturnPromise),
+    ]
+
     @objc func start(_ call: CAPPluginCall) {
         
         guard let key = call.getString("key"), !key.isEmpty else {

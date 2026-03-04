@@ -63,3 +63,4 @@ captures
 CLAUDE.md
 .gitignore
 project.yml
+settings.local.json
