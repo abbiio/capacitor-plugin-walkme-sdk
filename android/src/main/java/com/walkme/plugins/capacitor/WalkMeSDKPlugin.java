@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 import abbi.io.abbisdk.ABBI;
 import abbi.io.abbisdk.ABBIFlags;
+import abbi.io.abbisdk.WMStartOptions;
 
 
 @CapacitorPlugin(name = "WalkMeSDKPlugin")
@@ -33,6 +34,28 @@ public class WalkMeSDKPlugin extends Plugin {
         }
 
         ABBI.start(key, secret, ABBIFlags.ABBI_APP_HYBRID, getActivity().getApplication());
+        success(call);
+    }
+
+    @PluginMethod
+    public void startWithNoCallback(PluginCall call) {
+        String key = call.getString("key");
+        if (key == null || key.isEmpty()) {
+            call.reject("WalkMe app key is missing");
+            return;
+        }
+
+        String secret = call.getString("secret");
+        if (secret == null || secret.isEmpty()) {
+            call.reject("WalkMe app secret is missing");
+            return;
+        }
+
+        WMStartOptions options = createStartOptions(key, secret);
+        if (options != null) {
+            options.setNoCallback(true);
+            ABBI.start(options);
+        }
         success(call);
     }
 
@@ -192,6 +215,12 @@ public class WalkMeSDKPlugin extends Plugin {
     }
 
     // Private
+    private WMStartOptions createStartOptions(String key, String secret) {
+        WMStartOptions options = new WMStartOptions(key, secret, getActivity().getApplication());
+        options.setApplicationType(ABBIFlags.ABBI_APP_HYBRID);
+        return options;
+    }
+
     private void success(PluginCall call) {
         JSObject ret = new JSObject();
         ret.put("res", "ok");

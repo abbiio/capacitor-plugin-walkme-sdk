@@ -64,3 +64,5 @@ CLAUDE.md
 .gitignore
 project.yml
 settings.local.json
+MEMORY.md
+project_overview.md

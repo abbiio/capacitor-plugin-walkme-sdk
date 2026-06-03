@@ -25,6 +25,18 @@ export interface WalkMeSDKPlugin {
    * Usage example:
    * WalkMeSDK.restart();
    */
+  /**
+   * Starts WalkMe SDK without a callback.
+   *
+   * @param key The application key provided by WalkMe
+   * @param secret The application secret key provided by WalkMe
+   *
+   * @code
+   * Usage example:
+   * WalkMeSDK.startWithNoCallback({key: "app_key", secret: "app_secret"});
+   */
+  startWithNoCallback(options: WMKSPair): Promise<{ value: string }>;
+
   restart(): Promise<{ value: string }>;
 
   /**
@@ -111,9 +123,9 @@ export interface WalkMeSDKPlugin {
    *
    * @code
    * Usage example:
-   * WalkMeSDK.cleatPrivateUserAttributes();
+   * WalkMeSDK.clearPrivateUserAttributes();
    */
-  cleatPrivateUserAttributes(): Promise<void>;
+  clearPrivateUserAttributes(): Promise<void>;
 
   /**
    * Sets multiple user attributes
@@ -183,7 +195,7 @@ export interface WMUserID {userID: string}
 export interface WMScreenID {screenID: string}
 export interface WMLanguage {language: string}
 export interface WMTrigger {triggerKey: string}
-export interface WMTriggerFromDeepLink {triggerKey: string, deeplink: string} 
+export interface WMTriggerFromDeepLink {triggerKey: string, deepLink: string}
 export interface WMKSPair {key: string, secret: string}
 export interface WMKVPair {key: string, value: number | string | boolean}
 export interface WMAttributes {attributes: any}

@@ -5,6 +5,7 @@
 // each method the plugin supports using the CAP_PLUGIN_METHOD macro.
 CAP_PLUGIN(WalkMeSDKPlugin, "WalkMeSDKPlugin",
            CAP_PLUGIN_METHOD(start, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(startWithNoCallback, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(restart, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(stop, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setFlag, CAPPluginReturnNone);

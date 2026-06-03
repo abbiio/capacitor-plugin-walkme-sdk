@@ -12,6 +12,7 @@ public class WalkMeSDKPlugin: CAPPlugin, CAPBridgedPlugin {
     public let jsName = "WalkMeSDKPlugin"
     public let pluginMethods: [CAPPluginMethod] = [
         CAPPluginMethod(name: "start", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "startWithNoCallback", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "restart", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "stop", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setFlag", returnType: CAPPluginReturnNone),
@@ -46,7 +47,24 @@ public class WalkMeSDKPlugin: CAPPlugin, CAPBridgedPlugin {
             call.resolve(["res": "ok"])
         }
     }
-    
+
+    @objc func startWithNoCallback(_ call: CAPPluginCall) {                                                                                                                                                            
+        guard let key = call.getString("key"), !key.isEmpty else {                                                                                                                                                     
+            call.reject("WalkMe app key is missing")                                                                                                                                                                   
+            return                                                                                                                                                                                                     
+        }                                                                                                                                                                                                              
+                                                                                                                                                                                                                       
+        guard let secret = call.getString("secret"), !secret.isEmpty else {                                                                                                                                            
+            call.reject("WalkMe app secret is missing")                                                                                                                                                                
+            return                                                                                                                                                                                                     
+        }                                                                                                                                                                                                              
+                                                                                                                                                                                                                       
+        DispatchQueue.main.async {                                                                                                                                                                                     
+            ABBI.start(key, withSecretKey: secret, andApplicationType: ABBI_APP_HYBRID)                                                                                                                                
+            call.resolve(["res": "ok"])                                                                                                                                                                                
+        }                                                                                                                                                                                                              
+    }    
+
     @objc func setFlag(_ call: CAPPluginCall) {
         guard let flag = call.getInt("flag") else {
             call.reject("WalkMe flag must be an Int")
