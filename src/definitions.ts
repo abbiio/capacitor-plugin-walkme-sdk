@@ -16,16 +16,6 @@ export interface WalkMeSDKPlugin {
   start(options: WMKSPair): Promise<{ value: string }>;
 
   /**
-   * Restarts WalkMe SDK.
-   *
-   * This method can be called only after WalkMe start was called first.
-   * WalkMe SDK restart is allowed if current session has been running for at least 30 seconds.
-   * 
-   * @code
-   * Usage example:
-   * WalkMeSDK.restart();
-   */
-  /**
    * Starts WalkMe SDK without a callback.
    *
    * @param key The application key provided by WalkMe
@@ -37,6 +27,16 @@ export interface WalkMeSDKPlugin {
    */
   startWithNoCallback(options: WMKSPair): Promise<{ value: string }>;
 
+  /**
+   * Restarts WalkMe SDK.
+   *
+   * This method can be called only after WalkMe start was called first.
+   * WalkMe SDK restart is allowed if current session has been running for at least 30 seconds.
+   *
+   * @code
+   * Usage example:
+   * WalkMeSDK.restart();
+   */
   restart(): Promise<{ value: string }>;
 
   /**

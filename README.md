@@ -77,6 +77,11 @@ Starts WalkMe SDK without a callback.
 restart() => Promise<{ value: string; }>
 ```
 
+Restarts WalkMe SDK.
+
+This method can be called only after WalkMe start was called first.
+WalkMe SDK restart is allowed if current session has been running for at least 30 seconds.
+
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
 --------------------
