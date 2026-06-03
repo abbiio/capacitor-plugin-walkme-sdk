@@ -27,6 +27,23 @@ public class WalkMeSDKPlugin: CAPPlugin {
         }
     }
     
+    @objc func startWithNoCallback(_ call: CAPPluginCall) {
+        guard let key = call.getString("key"), !key.isEmpty else {
+            call.reject("WalkMe app key is missing")
+            return
+        }
+
+        guard let secret = call.getString("secret"), !secret.isEmpty else {
+            call.reject("WalkMe app secret is missing")
+            return
+        }
+
+        DispatchQueue.main.async {
+            ABBI.start(key, withSecretKey: secret, andApplicationType: ABBI_APP_HYBRID)
+            call.resolve(["res": "ok"])
+        }
+    }
+
     @objc func setFlag(_ call: CAPPluginCall) {
         guard let flag = call.getInt("flag") else {
             call.reject("WalkMe flag must be an Int")

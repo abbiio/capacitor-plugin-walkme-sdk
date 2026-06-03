@@ -14,6 +14,7 @@ npx cap sync
 <docgen-index>
 
 * [`start(...)`](#start)
+* [`startWithNoCallback(...)`](#startwithnocallback)
 * [`restart()`](#restart)
 * [`stop()`](#stop)
 * [`setFlag(...)`](#setflag)
@@ -22,7 +23,7 @@ npx cap sync
 * [`setUserAttributes(...)`](#setuserattributes)
 * [`setPrivateUserAttribute(...)`](#setprivateuserattribute)
 * [`setPrivateUserAttributes(...)`](#setprivateuserattributes)
-* [`cleatPrivateUserAttributes()`](#cleatprivateuserattributes)
+* [`clearPrivateUserAttributes()`](#clearprivateuserattributes)
 * [`sendTrackedEvent(...)`](#sendtrackedevent)
 * [`setScreenID(...)`](#setscreenid)
 * [`setLanguage(...)`](#setlanguage)
@@ -53,16 +54,28 @@ Starts WalkMe SDK.
 --------------------
 
 
+### startWithNoCallback(...)
+
+```typescript
+startWithNoCallback(options: WMKSPair) => Promise<{ value: string; }>
+```
+
+Starts WalkMe SDK without a callback.
+
+| Param         | Type                                          |
+| ------------- | --------------------------------------------- |
+| **`options`** | <code><a href="#wmkspair">WMKSPair</a></code> |
+
+**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+
+--------------------
+
+
 ### restart()
 
 ```typescript
 restart() => Promise<{ value: string; }>
 ```
-
-Restarts WalkMe SDK.
-
-This method can be called only after WalkMe start was called first.
-WalkMe SDK restart is allowed if current session has been running for at least 30 seconds.
 
 **Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
 
@@ -184,10 +197,10 @@ Sets multiple user attributes
 --------------------
 
 
-### cleatPrivateUserAttributes()
+### clearPrivateUserAttributes()
 
 ```typescript
-cleatPrivateUserAttributes() => Promise<void>
+clearPrivateUserAttributes() => Promise<void>
 ```
 
 clears the private user attributes
@@ -368,6 +381,6 @@ Once invoked, the method will show the campaign WITHOUT any of its segments (if 
 | Prop             | Type                |
 | ---------------- | ------------------- |
 | **`triggerKey`** | <code>string</code> |
-| **`deeplink`**   | <code>string</code> |
+| **`deepLink`**   | <code>string</code> |
 
 </docgen-api>
